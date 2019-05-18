@@ -10,13 +10,6 @@ public class Advertisement {
     }
 
 
-/*
-    public void buyAdvertisement() {
-        company.setCompanyMoney(company.getCompanyMoney() - advertisementPrice);
-        advertisementNumber ++;
-        System.out.println("Advertisement: getCompanyMoney:" + company.getCompanyMoney() + " " + "AdvertisementPrice:" + advertisementPrice + " " + "Advertisementdb:" + advertisementNumber);
-    }*/
-
     public int getAdvertisementPrice() {
         return advertisementPrice;
     }

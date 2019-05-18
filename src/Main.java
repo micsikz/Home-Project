@@ -11,6 +11,8 @@ public class Main {
         logic.production(10);
         logic.dismissWorkers(1);
         logic.dismissWorkers(5);
+        logic.buyAdvertisement(1);
+        logic.buyAdvertisement(10);
 
     }
 

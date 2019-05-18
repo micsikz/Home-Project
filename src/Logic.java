@@ -7,7 +7,6 @@ public class Logic {
     Workers workers = new Workers(0, 0);
 
 
-
     public void hiringWorkers(int n) {
         if(company.getCompanyMoney() >= (workers.getWage()*n)) {
             workers.setWorkersNumber(workers.getWorkersNumber() + n);
@@ -92,6 +91,16 @@ public class Logic {
         System.out.println("buyEngin getCompanyMoney:" + company.getCompanyMoney() + " " + "storeEngin:" + store.getStoreEngin());
         } else {
         System.out.println("Nincs elég pénzed " + n +"db kasztni megvásárlásához");
+        }
+    }
+
+    public void buyAdvertisement(int n) {
+        if (company.getCompanyMoney() >= (advertisement.getAdvertisementPrice()*n)) {
+            company.setCompanyMoney(company.getCompanyMoney() - (advertisement.getAdvertisementPrice()*n));
+            advertisement.setAdvertisementNumber(advertisement.getAdvertisementNumber() + n);
+            System.out.println("Vásároltál " + n + " rekmlámot!" + "getadvertisementNumber:" + advertisement.getAdvertisementNumber());
+        } else {
+            System.out.println("Nincs elég pénzed " + n + " reklám megvásárlásához!");
         }
     }
 }
