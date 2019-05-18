@@ -4,19 +4,38 @@ public class Logic {
     Store store = new Store(0, 0, 0, 0);
     Advertisement advertisement = new Advertisement(12345, 0);
     Ingredient ingredient = new Ingredient();
-    Workers workers = new Workers(1);
-    int productionQuantityNumber = workers.getWorkersNumber() * workers.getProductionSpeed();
+    Workers workers = new Workers(0, 0);
 
 
+
+    public void hiringWorkers(int n) {
+        if(company.getCompanyMoney() >= (workers.getWage()*n)) {
+            workers.setWorkersNumber(workers.getWorkersNumber() + n);
+            int a = workers.getWage() * n;
+            System.out.println("Felvettél " + n + "új munkást!" + " workers.getWage:" + workers.getWage() + " a:" + a +"workersnumber:" + workers.getWorkersNumber());
+        } else {
+            System.out.println("Nincs elég pénzed " + n + "munkás felvételéhez!");
+        }
+    }
+
+    public void dismissWorkers(int n) {
+        if(n <= workers.getWorkersNumber()) {
+            workers.setWorkersNumber(workers.getWorkersNumber() - n);
+            System.out.println("Elbocsátottál " + n + " munkást!");
+        } else {
+            System.out.println("Nincs " + n + " munkásod, így nem tudsz ennyit elbocsátani!");
+        }
+    }
 
     public void production(int n) {
         if(store.getStoreWheel() >= 4*n && store.getStoreChasis() >= n && store.getStoreEngin() >= n) {
-            if(productionQuantityNumber >= n) {
+            if(workers.getProductionQuantityNumber() >= n) {
+
                 System.out.println("getStoreWheel:" + store.getStoreWheel() + " " +
                         "getStoreChasis:" + store.getStoreChasis() + " " +
                         "getStoreEngin:" + store.getStoreEngin() + " " +
                         "getStoreCar:" + store.getStoreCar() + " " +
-                        "production:" + productionQuantityNumber);
+                        "production:" + workers.getProductionQuantityNumber());
                 store.setStoreWheel(store.getStoreWheel() - (n * 4));
                 store.setStoreChasis(store.getStoreChasis() - n);
                 store.setStoreEngin(store.getStoreEngin() - n);
@@ -25,15 +44,15 @@ public class Logic {
                         "getStoreChasis:" + store.getStoreChasis() + " " +
                         "getStoreEngin:" + store.getStoreEngin() + " " +
                         "getStoreCar:" + store.getStoreCar() + " " +
-                        "production:" + productionQuantityNumber);
+                        "production:" + workers.getProductionQuantityNumber());
                 System.out.println(n + "db autó összeszerelésre került");
             } else {
-                System.out.println("Nincs elég munkásod " + n + "db autó összeszerelésére");
+                System.out.println("Nincs elég munkásod " + n + "db autó összeszerelésére! " + " workersnumber:" + workers.getWorkersNumber() + "productionQuantityNumber:" + workers.getProductionQuantityNumber());
                 System.out.println("getStoreWheel:" + store.getStoreWheel() + " " +
                         "getStoreChasis:" + store.getStoreChasis() + " " +
                         "getStoreEngin:" + store.getStoreEngin() + " " +
                         "getStoreCar:" + store.getStoreCar() + " " +
-                        "production:" + productionQuantityNumber);
+                        "production:" + workers.getProductionQuantityNumber());
             }
         } else {
             System.out.println("Nincs elég nyersanyagod " + n + "db autó összeszerelésére");
@@ -41,7 +60,7 @@ public class Logic {
                     "getStoreChasis:" + store.getStoreChasis() + " " +
                     "getStoreEngin:" + store.getStoreEngin() + " " +
                     "getStoreCar:" + store.getStoreCar() + " " +
-                    "production:" + productionQuantityNumber);
+                    "production:" + workers.getProductionQuantityNumber());
         }
     }
 

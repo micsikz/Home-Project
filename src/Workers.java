@@ -7,7 +7,7 @@ public class Workers {
     private int productionQuantityNumber;
 
     public int getProductionQuantityNumber() {
-        return productionQuantityNumber;
+        return workersNumber*productionSpeed;
     }
 
     public void setProductionQuantityNumber(int productionQuantityNumber) {
@@ -27,10 +27,11 @@ public class Workers {
         this.workersNumber = workersNumber;
     }
 
-    public Workers(int workersNumber) {
+    public Workers(int workersNumber, int productionQuantityNumber) {
         this.workersNumber = workersNumber;
         this.workerWage = WORKERWAGE;
         this.productionSpeed = PRODUCTIONSPEED;
+        this.productionQuantityNumber = productionQuantityNumber;
     }
 
     public int getWage() {
