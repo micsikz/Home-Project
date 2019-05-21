@@ -1,10 +1,15 @@
+import java.time.LocalDate;
+
 public class Logic {
 
-    Company company = new Company(1000000);
-    Store store = new Store(0, 0, 0, 0);
-    Advertisement advertisement = new Advertisement(12345, 0);
+    Company company = new Company(1000000, 0, LocalDate.now());
+    Store store = new Store(0, 0, 0,0);
+    Advertisement advertisement = new Advertisement( 0);
     Ingredient ingredient = new Ingredient();
     Workers workers = new Workers(0, 0);
+
+
+
 
 
     public void hiringWorkers(int n) {
@@ -38,7 +43,7 @@ public class Logic {
                 store.setStoreWheel(store.getStoreWheel() - (n * 4));
                 store.setStoreChasis(store.getStoreChasis() - n);
                 store.setStoreEngin(store.getStoreEngin() - n);
-                store.setStoreCar(store.getStoreCar() + 1);
+                store.setStoreCar(store.getStoreCar() + n);
                 System.out.println("getStoreWheel:" + store.getStoreWheel() + " " +
                         "getStoreChasis:" + store.getStoreChasis() + " " +
                         "getStoreEngin:" + store.getStoreEngin() + " " +
@@ -98,9 +103,41 @@ public class Logic {
         if (company.getCompanyMoney() >= (advertisement.getAdvertisementPrice()*n)) {
             company.setCompanyMoney(company.getCompanyMoney() - (advertisement.getAdvertisementPrice()*n));
             advertisement.setAdvertisementNumber(advertisement.getAdvertisementNumber() + n);
-            System.out.println("Vásároltál " + n + " rekmlámot!" + "getadvertisementNumber:" + advertisement.getAdvertisementNumber());
+            System.out.println("Vásároltál " + n + " rekmlámot!" + "getadvertisementNumber:" + advertisement.getAdvertisementNumber() + " price:" + advertisement.getAdvertisementPrice());
         } else {
             System.out.println("Nincs elég pénzed " + n + " reklám megvásárlásához!");
+        }
+    }
+
+    public void sell(int quantity, int sellingPrice) {
+        if(quantity <= store.getStoreCar()) {
+            if (sellingPrice <= ((ingredient.getEngin() + ingredient.getChasis() + (ingredient.getWheel())*4)*2.5)) { // Az alapanyagok max. 250%-ért lehet eladni terméket
+                company.setMonth(company.getMonth().plusMonths(1));
+                System.out.println(company.getMonth());
+
+                double random = (double)company.getSellingRandomNumber();
+                double reklam = (double)advertisement.getAdvertisementBoost()*advertisement.getAdvertisementNumber();
+                double randomPlusReklam = random + reklam;
+                if(randomPlusReklam > 100) {
+                    randomPlusReklam = 100;
+                }
+
+                double sellingquantity2 = quantity*(randomPlusReklam)/100;
+                int realselling = (int)sellingquantity2;
+                System.out.println("random:" + company.getSellingRandomNumber() + " " + random +
+                                    " reklám:" + reklam + " sellingquantity2:" + sellingquantity2 +
+                                    " realselling:" + realselling +
+                                    " randomPlusReklám:" + randomPlusReklam);
+                System.out.println("storeCar:" + store.getStoreCar());
+                store.setStoreCar(store.getStoreCar()-realselling);
+                System.out.println("storeCar: " + store.getStoreCar());
+                System.out.println("Sikeresen eladtál " + realselling + "db autót!");
+            } else {
+                double prise = (ingredient.getEngin() + ingredient.getChasis() + ingredient.getWheel())*2.5;
+                System.out.println("Túl drágán akarod eladni az autót! Az autó maximum ára " + prise + "fabatka lehet");
+            }
+        } else {
+            System.out.println("Nincs " + quantity + "db autód, amit eladhatnál!");
         }
     }
 }

@@ -5,11 +5,11 @@ public class Store {
     private int storeEngin;
     private int storeCar;
 
-    public Store(int storeWheel, int storeChasis, int storeEngin, int car) {
+    public Store(int storeWheel, int storeChasis, int storeEngin, int storeCar) {
         this.storeWheel = storeWheel;
         this.storeChasis = storeChasis;
         this.storeEngin = storeEngin;
-        this.storeCar = car;
+        this.storeCar = storeCar;
     }
 
     public int getStoreCar() {

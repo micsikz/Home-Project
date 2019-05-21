@@ -1,5 +1,5 @@
 public class Workers {
-    private final int WORKERWAGE = 50000;
+    private final int WORKERWAGE = 500;
     private int workerWage;
     private final int PRODUCTIONSPEED = 5;
     private int productionSpeed;

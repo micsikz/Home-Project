@@ -1,12 +1,12 @@
 public class Ingredient {
 
-    private final int WHEEL = 10000;
+    private final int WHEEL = 100;
     private int wheel;
 
-    private final int CHASIS = 50000;
+    private final int CHASIS = 500;
     private int chasis;
 
-    private final int ENGIN = 35000;
+    private final int ENGIN = 350;
     private int engin;
 
     public Ingredient() {
