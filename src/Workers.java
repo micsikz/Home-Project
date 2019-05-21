@@ -1,7 +1,7 @@
 public class Workers {
-    private final int WORKERWAGE = 500;
+    private final int WORKERWAGE = 50000;
     private int workerWage;
-    private final int PRODUCTIONSPEED = 5;
+    private final int PRODUCTIONSPEED = 30;
     private int productionSpeed;
     private int workersNumber;
     private int productionQuantityNumber;

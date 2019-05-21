@@ -101,11 +101,20 @@ public class Logic {
 
     public void buyAdvertisement(int n) {
         if (company.getCompanyMoney() >= (advertisement.getAdvertisementPrice()*n)) {
-            company.setCompanyMoney(company.getCompanyMoney() - (advertisement.getAdvertisementPrice()*n));
+
             advertisement.setAdvertisementNumber(advertisement.getAdvertisementNumber() + n);
             System.out.println("Vásároltál " + n + " rekmlámot!" + "getadvertisementNumber:" + advertisement.getAdvertisementNumber() + " price:" + advertisement.getAdvertisementPrice());
         } else {
             System.out.println("Nincs elég pénzed " + n + " reklám megvásárlásához!");
+        }
+    }
+
+    public void sellAdvertisement(int n) {
+        if (advertisement.getAdvertisementNumber() >= n) {
+            advertisement.setAdvertisementNumber(advertisement.getAdvertisementNumber() * n);
+            System.out.println("Lemondtál " + n + "db reklámot!");
+        } else {
+            System.out.println("Nincs " + n + "db reklámod, így nem is tudod lemondani!");
         }
     }
 
@@ -114,6 +123,7 @@ public class Logic {
             if (sellingPrice <= ((ingredient.getEngin() + ingredient.getChasis() + (ingredient.getWheel())*4)*2.5)) { // Az alapanyagok max. 250%-ért lehet eladni terméket
                 company.setMonth(company.getMonth().plusMonths(1));
                 System.out.println(company.getMonth());
+                company.setCompanyMoney(company.getCompanyMoney() - (advertisement.getAdvertisementPrice()*advertisement.getAdvertisementNumber())); // Levonjuk a havi reklámköltséget
 
                 double random = (double)company.getSellingRandomNumber();
                 double reklam = (double)advertisement.getAdvertisementBoost()*advertisement.getAdvertisementNumber();
@@ -133,7 +143,7 @@ public class Logic {
                 System.out.println("storeCar: " + store.getStoreCar());
                 System.out.println("Sikeresen eladtál " + realselling + "db autót!");
             } else {
-                double prise = (ingredient.getEngin() + ingredient.getChasis() + ingredient.getWheel())*2.5;
+                double prise = (ingredient.getEngin() + ingredient.getChasis() + (ingredient.getWheel()*4))*2.5;
                 System.out.println("Túl drágán akarod eladni az autót! Az autó maximum ára " + prise + "fabatka lehet");
             }
         } else {
