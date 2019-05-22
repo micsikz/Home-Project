@@ -124,16 +124,20 @@ public class Logic {
                 company.setMonth(company.getMonth().plusMonths(1));
                 System.out.println(company.getMonth());
                 company.setCompanyMoney(company.getCompanyMoney() - (advertisement.getAdvertisementPrice()*advertisement.getAdvertisementNumber())); // Levonjuk a havi reklámköltséget
+                company.setCompanyMoney(company.getCompanyMoney() - (workers.getWorkersNumber()*workers.getWage()));    // Levonjuk a havi rbérköltséget
 
                 double random = (double)company.getSellingRandomNumber();
                 double reklam = (double)advertisement.getAdvertisementBoost()*advertisement.getAdvertisementNumber();
                 double randomPlusReklam = random + reklam;
                 if(randomPlusReklam > 100) {
                     randomPlusReklam = 100;
+                    //TODO Az autó bevételét még hozzá kell addni a companyMoneyhoz!!!
                 }
 
                 double sellingquantity2 = quantity*(randomPlusReklam)/100;
                 int realselling = (int)sellingquantity2;
+                int monthIncom = realselling*sellingPrice;
+                company.setCompanyMoney(company.getCompanyMoney()+(realselling*sellingPrice));
                 System.out.println("random:" + company.getSellingRandomNumber() + " " + random +
                                     " reklám:" + reklam + " sellingquantity2:" + sellingquantity2 +
                                     " realselling:" + realselling +
@@ -141,7 +145,7 @@ public class Logic {
                 System.out.println("storeCar:" + store.getStoreCar());
                 store.setStoreCar(store.getStoreCar()-realselling);
                 System.out.println("storeCar: " + store.getStoreCar());
-                System.out.println("Sikeresen eladtál " + realselling + "db autót!");
+                System.out.println("Sikeresen eladtál " + realselling + "db autót! A havi bevételed:" + monthIncom);
             } else {
                 double prise = (ingredient.getEngin() + ingredient.getChasis() + (ingredient.getWheel()*4))*2.5;
                 System.out.println("Túl drágán akarod eladni az autót! Az autó maximum ára " + prise + "fabatka lehet");

@@ -10,14 +10,14 @@ public class Workers {
         return workersNumber*productionSpeed;
     }
 
-    public void setProductionQuantityNumber(int productionQuantityNumber) {
+   /* public void setProductionQuantityNumber(int productionQuantityNumber) {
         this.productionQuantityNumber = productionQuantityNumber;
     }
 
     public int productionQuantity() {
         productionQuantityNumber = workersNumber * productionSpeed;
         return productionQuantityNumber;
-    }
+    }*/
 
     public int getWorkersNumber() {
         return workersNumber;
@@ -38,7 +38,7 @@ public class Workers {
         return workerWage;
     }
 
-    public void setWage(int wage) {
+    /*public void setWage(int wage) {
         this.workerWage = wage;
     }
 
@@ -48,7 +48,7 @@ public class Workers {
 
     public void setProductionSpeed(int productionSpeed) {
         this.productionSpeed = productionSpeed;
-    }
+    }*/
 
 
 }

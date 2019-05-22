@@ -35,7 +35,7 @@ public class Company {
         return sellingRandomNumber;
     }
 
-    public void setSellingRandomNumber(int sellingRandomNumber) {
+    /*public void setSellingRandomNumber(int sellingRandomNumber) {
         this.sellingRandomNumber = sellingRandomNumber;
-    }
+    }*/
 }
