@@ -131,7 +131,7 @@ public class Logic {
                 double randomPlusReklam = random + reklam;
                 if(randomPlusReklam > 100) {
                     randomPlusReklam = 100;
-                    //TODO Az autó bevételét még hozzá kell addni a companyMoneyhoz!!!
+
                 }
 
                 double sellingquantity2 = quantity*(randomPlusReklam)/100;
